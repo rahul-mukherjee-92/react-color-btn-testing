@@ -38,3 +38,29 @@ test('test checkbox with button functionality', () => {
   fireEvent.click(checkbox)
   expect(button).toBeEnabled()
 })
+
+test("button turns gray when disabled & then reverts back to red", () => {
+  render(<App />) // creates the virtual DOM for testing
+  const button = screen.getByRole('button', {name: "Change to blue"})
+  const checkbox = screen.getByRole("checkbox", {name: "Disable button"})
+
+  fireEvent.click(checkbox)
+  expect(button).toHaveStyle({backgroundColor: "gray"})
+
+  fireEvent.click(checkbox)
+  expect(button).toHaveStyle({backgroundColor: "red"})
+})
+
+test("button turns gray when disabled & then reverts back to blue", () => {
+  render(<App />) // creates the virtual DOM for testing
+  const button = screen.getByRole('button', {name: "Change to blue"})
+  const checkbox = screen.getByRole("checkbox", {name: "Disable button"})
+
+  fireEvent.click(button)
+
+  fireEvent.click(checkbox)
+  expect(button).toHaveStyle({backgroundColor: "gray"})
+
+  fireEvent.click(checkbox)
+  expect(button).toHaveStyle({backgroundColor: "blue"})
+})
