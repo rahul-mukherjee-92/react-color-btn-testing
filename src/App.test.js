@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import App from './App';
+import App, { changeCamelToSpaces } from './App';
 
 // test('renders learn react link', () => {
 //   render(<App />);
@@ -63,4 +63,17 @@ test("button turns gray when disabled & then reverts back to blue", () => {
 
   fireEvent.click(checkbox)
   expect(button).toHaveStyle({backgroundColor: "blue"})
+})
+
+// Testing a function
+describe('camelcase converting to spaces', () => {
+  test("with no inner capital letter", () => {
+    expect(changeCamelToSpaces('Blue')).toBe('Blue')
+  })
+  test("with 1 inner capital letter", () => {
+    expect(changeCamelToSpaces('MidnightBlue')).toBe('Midnight Blue')
+  })
+  test("with multiple inner capital letter", () => {
+    expect(changeCamelToSpaces('MediumVioletRed')).toBe('Medium Violet Red')
+  })
 })

@@ -2,6 +2,10 @@ import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
 
+export function changeCamelToSpaces(color) {
+    return color.replace(/\B([A-Z])\B/g, " $1")
+}
+
 function App() {
   const [redState, setRedState] = useState(true)
   const [disabled, setDisabled] = useState(false)
