@@ -1,5 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import App, { changeCamelToSpaces } from './App';
+import { fireEvent, render, screen } from "@testing-library/react";
+import App, { changeCamelToSpaces } from "./App";
 
 // test('renders learn react link', () => {
 //   render(<App />);
@@ -7,73 +7,82 @@ import App, { changeCamelToSpaces } from './App';
 //   expect(linkElement).toBeInTheDocument();
 // });
 
-test('test button functionality', () => {
+test("button functionality", () => {
   render(<App />);
-  const button = screen.getByRole('button', {name: "Change to blue"});
-  expect(button).toHaveStyle({backgroundColor: "red"})
+  const button = screen.getByRole("button", {
+    name: "Change to Midnight Blue",
+  });
+  expect(button).toHaveStyle({ backgroundColor: "MediumVioletRed" });
 
   // click button
-  fireEvent.click(button)
+  fireEvent.click(button);
 
   // assertion for color change
-  expect(button).toHaveStyle({backgroundColor: "blue"})
+  expect(button).toHaveStyle({ backgroundColor: "MidnightBlue" });
 
   // assertion for text change
-  expect(button.textContent).toBe("Change to red")
+  expect(button).toHaveTextContent("Change to Medium Violet Red");
 });
 
-test('test checkbox with button functionality', () => {
+test("checkbox with button functionality", () => {
+  render(<App />); // creates the virtual DOM for testing
+
   // check button starts enabled
-  render(<App />) // creates the virtual DOM for testing
-  const button = screen.getByRole('button', {name: "Change to blue"})
-  expect(button).toBeEnabled()
-  
+  const button = screen.getByRole("button", {
+    name: "Change to Midnight Blue",
+  });
+  expect(button).toBeEnabled();
+
   // check checkbox starts unchecked
-  const checkbox = screen.getByRole("checkbox", {name: "Disable button"})
-  expect(checkbox).not.toBeChecked()
+  const checkbox = screen.getByRole("checkbox", { name: "Disable button" });
+  expect(checkbox).not.toBeChecked();
 
-  fireEvent.click(checkbox)
-  expect(button).toBeDisabled()
+  fireEvent.click(checkbox);
+  expect(button).toBeDisabled();
 
-  fireEvent.click(checkbox)
-  expect(button).toBeEnabled()
-})
+  fireEvent.click(checkbox);
+  expect(button).toBeEnabled();
+});
 
 test("button turns gray when disabled & then reverts back to red", () => {
-  render(<App />) // creates the virtual DOM for testing
-  const button = screen.getByRole('button', {name: "Change to blue"})
-  const checkbox = screen.getByRole("checkbox", {name: "Disable button"})
+  render(<App />); // creates the virtual DOM for testing
+  const button = screen.getByRole("button", {
+    name: "Change to Midnight Blue",
+  });
+  const checkbox = screen.getByRole("checkbox", { name: "Disable button" });
 
-  fireEvent.click(checkbox)
-  expect(button).toHaveStyle({backgroundColor: "gray"})
+  fireEvent.click(checkbox);
+  expect(button).toHaveStyle({ backgroundColor: "gray" });
 
-  fireEvent.click(checkbox)
-  expect(button).toHaveStyle({backgroundColor: "red"})
-})
+  fireEvent.click(checkbox);
+  expect(button).toHaveStyle({ backgroundColor: "MediumVioletRed" });
+});
 
 test("button turns gray when disabled & then reverts back to blue", () => {
-  render(<App />) // creates the virtual DOM for testing
-  const button = screen.getByRole('button', {name: "Change to blue"})
-  const checkbox = screen.getByRole("checkbox", {name: "Disable button"})
+  render(<App />); // creates the virtual DOM for testing
+  const button = screen.getByRole("button", {
+    name: "Change to Midnight Blue",
+  });
+  const checkbox = screen.getByRole("checkbox", { name: "Disable button" });
 
-  fireEvent.click(button)
+  fireEvent.click(button);
 
-  fireEvent.click(checkbox)
-  expect(button).toHaveStyle({backgroundColor: "gray"})
+  fireEvent.click(checkbox);
+  expect(button).toHaveStyle({ backgroundColor: "gray" });
 
-  fireEvent.click(checkbox)
-  expect(button).toHaveStyle({backgroundColor: "blue"})
-})
+  fireEvent.click(checkbox);
+  expect(button).toHaveStyle({ backgroundColor: "MidnightBlue" });
+});
 
 // Testing a function
-describe('camelcase converting to spaces', () => {
+describe("camelcase converting to spaces", () => {
   test("with no inner capital letter", () => {
-    expect(changeCamelToSpaces('Blue')).toBe('Blue')
-  })
+    expect(changeCamelToSpaces("Blue")).toBe("Blue");
+  });
   test("with 1 inner capital letter", () => {
-    expect(changeCamelToSpaces('MidnightBlue')).toBe('Midnight Blue')
-  })
+    expect(changeCamelToSpaces("MidnightBlue")).toBe("Midnight Blue");
+  });
   test("with multiple inner capital letter", () => {
-    expect(changeCamelToSpaces('MediumVioletRed')).toBe('Medium Violet Red')
-  })
-})
+    expect(changeCamelToSpaces("MediumVioletRed")).toBe("Medium Violet Red");
+  });
+});

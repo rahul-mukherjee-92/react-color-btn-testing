@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
+import {useState} from 'react';
 
 export function changeCamelToSpaces(color) {
     return color.replace(/\B([A-Z])\B/g, " $1")
@@ -13,12 +13,12 @@ function App() {
   return (
     <div>
       <button 
-        style={{ backgroundColor: disabled ? "gray" : redState ? "red" : "blue" }} 
+        style={{ backgroundColor: disabled ? "gray" : redState ? "MediumVioletRed" : "MidnightBlue" }} 
         // onClick={() => setRedState(redState => !redState)}
         onClick={() => setRedState(!redState)}
         disabled={disabled}
       >
-        {redState ? "Change to blue" : "Change to red"}
+        {redState ? "Change to Midnight Blue" : "Change to Medium Violet Red"}
       </button>
       <input 
         type="checkbox"
